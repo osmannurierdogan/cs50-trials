@@ -1,0 +1,16 @@
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#search{
+    background-color: #2dbeb2;
+    text-align: center;
+    padding: 7% 15%;
+    /* margin: 5%; */
+}
+.text-area{
+    margin: 5px;
+    padding: 10px;
+}
