@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hello</title>
+        <title>Colors</title>
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" /> -->
 
         <!-- Google Fonts -->
@@ -24,28 +24,34 @@
     </head>
     <body>
         <script>
-            let hello = () => {
-                const h1Element = document.querySelector('h1');
-                if(h1Element.innerHTML === 'Hello!'){
-                    h1Element.innerHTML = 'Goodbye!';
-                }else{
-                    h1Element.innerHTML = 'Hello!';
+            document.addEventListener('DOMContentLoaded', function(){
+                /*
+                // Change background color to red
+                document.querySelector('.red').onclick = function(){
+                    document.querySelector('body').style.backgroundColor = 'red';
                 }
-            }
-
-            document.addEventListener('DOMContentLoaded', function (){
-                document.querySelector('form').onsubmit = function (){
-                    const name = document.querySelector('#name').value;
-                    alert(`Hello, ${name}!`);
-                };
-            });
+                // Change background color to blue
+                document.querySelector('.blue').onclick = function(){
+                    document.querySelector('body').style.backgroundColor = 'blue';
+                }
+                // Change background color to green
+                document.querySelector('.green').onclick = function(){
+                    document.querySelector('body').style.backgroundColor = 'green';
+                }
+                */
+                
+                // Change font color to red
+                document.querySelectorAll('button').forEach(function(button){
+                    button.onclick = function(){
+                        document.querySelector('#hello').style.color = button.dataset.color;
+                    }
+                })
+            
+            })
         </script>
-        <!-- <h1>Hello, World!</h1> -->
-        <h1>Hello!</h1>
-        <!-- <button onclick="hello()" class="btn btn-primary">Click Here</button> -->
-        <form action="">
-            <input type="text" id="name" autofocus placeholder="Name">
-            <input type="submit" value="Submit">
-        </form>
+        <h1 id="hello">Hello!</h1>
+        <button data-color="red">Red</button>
+        <button data-color="blue">Blue</button>
+        <button data-color="green">Green</button>
     </body>
 </html>
