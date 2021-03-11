@@ -3,21 +3,19 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Colors</title>
+        <title>Osman Nuri Erdogan</title>
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" /> -->
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         
         <!-- CSS Stylesheets -->
+        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="style.css"> -->
-
         <!-- Bootstrap Scripts -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
         <!-- Font Awesome -->
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" /> -->
         <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"></script>
@@ -25,42 +23,38 @@
     <body>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                /*
-                // Change background color to red
-                document.querySelector('.red').onclick = function(){
-                    document.querySelector('body').style.backgroundColor = 'red';
-                }
-                // Change background color to blue
-                document.querySelector('.blue').onclick = function(){
-                    document.querySelector('body').style.backgroundColor = 'blue';
-                }
-                // Change background color to green
-                document.querySelector('.green').onclick = function(){
-                    document.querySelector('body').style.backgroundColor = 'green';
-                }
-                */
-                
-                // Change font color to red
-                /* document.querySelectorAll('button').forEach(button => {
-                    button.onclick = function(){
-                        document.querySelector('#hello').style.color = button.dataset.color;
+                // By default, submit button is disabled.
+                document.querySelector('#submit').disabled = true;
+
+                document.querySelector('#task').onkeyup = () => {
+                    if(document.querySelector('#task').value.length > 0){
+                        document.querySelector('#submit').disabled = false;
+                    }else{
+                        document.querySelector('#submit').disabled = true;
                     }
-                }) */
-                document.querySelector('select').onchange = function () {
-                    document.querySelector('#hello').style.color = this.value;
+                }
+
+                document.querySelector('form').onsubmit = () => {
+                    const task = document.querySelector('#task').value;
+                    //console.log(task);
+                    const createTaskElement = document.createElement('li');
+                    createTaskElement.innerHTML = task;
+                    document.querySelector('#tasks').append(createTaskElement);
+                    
+                    document.querySelector('#task').value = '';
+                    document.querySelector('#submit').disabled = true;
+                    // Stop form from submitting
+                    return false;
                 }
             })
         </script>
-        <h1 id="hello">Hello!</h1>
-        <!-- <button data-color="red">Red</button>
-        <button data-color="blue">Blue</button>
-        <button data-color="green">Green</button> -->
-        <select>
-            <option value="black">Black</option>
-            <option value="red">Red</option>
-            <option value="blue">Blue</option>
-            <option value="yellow">Yellow</option>
-            <option value="pink">Pink</option>
-        </select>
+        <h1>Tasks</h1>
+        <ul id="tasks">
+
+        </ul>
+        <form>
+            <input type="text" id="task" placeholder="New Task" autocomplete="off">
+            <input class="btn btn-dark" id='submit' type="submit" value="Submit">
+        </form>
     </body>
 </html>
