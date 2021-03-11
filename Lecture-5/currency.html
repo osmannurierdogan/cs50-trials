@@ -31,33 +31,17 @@
         <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"></script>
     </head>
     <body>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-
-                document.querySelector('form').onsubmit = () => {
-                    fetch('https://api.exchangeratesapi.io/latest?base=USD')
-                    .then(response => response.json()) // return response.json()
-                    .then(data => {
-                        const currency = document.querySelector('#currency').value.toUpperCase();
-                        const rate = data.rates[currency];
-                        if (rate !== undefined){
-                            document.querySelector('#result').innerHTML = `1 USD = ${rate.toFixed(3)} ${currency}.`;
-                        } else {
-                            document.querySelector('#result').innerHTML = 'Invalid Currency.'
-                        }
-                    })
-                    
-                    .catch(error => {
-                        console.log('Error : ', error);
-                    });
-
-                    return false;
-                };    
-            });
-
-        </script>
+        <script src="currency.js"></script>
         <form>
-            <input id="currency" placeholder="Currency" type="text" autocomplete="off">
+            <select>
+                <option class="currencyType" value="EUR">EUR</option>
+                <option class="currencyType" value="USD">USD</option>
+                <option class="currencyType" value="TRY">TRY</option>
+                <option class="currencyType" value="CNY">CNY</option>
+                <option class="currencyType" value="JPY">JPY</option>
+                <option class="currencyType" value="GBP">GBP</option>
+            </select>
+            <input id="currency" placeholder="Currency" type="number" autocomplete="off">
             <input type="submit" value="Convert">
         </form>
         <div id="result"></div>
